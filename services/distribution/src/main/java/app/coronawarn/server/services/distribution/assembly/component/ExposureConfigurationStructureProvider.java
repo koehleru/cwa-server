@@ -22,7 +22,7 @@ package app.coronawarn.server.services.distribution.assembly.component;
 import app.coronawarn.server.common.protocols.internal.RiskScoreParameters;
 import app.coronawarn.server.services.distribution.assembly.exposureconfig.ExposureConfigurationProvider;
 import app.coronawarn.server.services.distribution.assembly.exposureconfig.UnableToLoadFileException;
-import app.coronawarn.server.services.distribution.assembly.exposureconfig.structure.directory.ExposureConfigurationDirectory;
+import app.coronawarn.server.services.distribution.assembly.exposureconfig.structure.directory.AppConfigurationDirectory;
 import app.coronawarn.server.services.distribution.assembly.structure.WritableOnDisk;
 import app.coronawarn.server.services.distribution.assembly.structure.directory.Directory;
 import org.slf4j.Logger;
@@ -32,7 +32,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Reads the exposure configuration parameters from the respective file in the class path and builds a {@link
- * ExposureConfigurationDirectory} with them.
+ * AppConfigurationDirectory} with them.
  */
 @Component
 public class ExposureConfigurationStructureProvider {
@@ -49,7 +49,7 @@ public class ExposureConfigurationStructureProvider {
 
   public Directory<WritableOnDisk> getExposureConfiguration() {
     var riskScoreParameters = readExposureConfiguration();
-    return new ExposureConfigurationDirectory(riskScoreParameters, cryptoProvider);
+    return new AppConfigurationDirectory(riskScoreParameters, cryptoProvider);
   }
 
   private RiskScoreParameters readExposureConfiguration() {

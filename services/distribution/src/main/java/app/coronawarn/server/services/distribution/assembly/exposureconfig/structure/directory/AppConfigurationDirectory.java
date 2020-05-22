@@ -33,7 +33,7 @@ import java.util.Set;
  * Creates the directory structure {@code /parameters/country/:country} and writes a file called {@code index}
  * containing {@link RiskScoreParameters} wrapped in a signed zip archive.
  */
-public class ExposureConfigurationDirectory extends DirectoryOnDisk {
+public class AppConfigurationDirectory extends DirectoryOnDisk {
 
   private static final String PARAMETERS_DIRECTORY = "parameters";
   private static final String COUNTRY_DIRECTORY = "country";
@@ -46,7 +46,7 @@ public class ExposureConfigurationDirectory extends DirectoryOnDisk {
    * @param exposureConfig The {@link RiskScoreParameters} to sign and write.
    * @param cryptoProvider The {@link CryptoProvider} whose artifacts to use for creating the signature.
    */
-  public ExposureConfigurationDirectory(RiskScoreParameters exposureConfig,
+  public AppConfigurationDirectory(RiskScoreParameters exposureConfig,
       CryptoProvider cryptoProvider) {
     super(PARAMETERS_DIRECTORY);
 
