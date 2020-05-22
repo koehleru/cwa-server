@@ -25,9 +25,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * The RiskScoreClassificationValidator checks the values of a given {@link RiskScoreClassification}. instance.
+ * The RiskScoreClassificationValidator validates the values of an associated {@link RiskScoreClassification} instance.
  */
-public class RiskScoreClassificationValidator {
+public class RiskScoreClassificationValidator extends AppConfigurationValidator {
 
   /**
    * This defines the number of possible values (0 ... RISK_SCORE_VALUE_RANGE - 1) for the total risk score.
@@ -35,8 +35,6 @@ public class RiskScoreClassificationValidator {
   public static final int RISK_SCORE_VALUE_RANGE = 256;
 
   private final RiskScoreClassification riskScoreClassification;
-
-  private ValidationResult errors;
 
   public RiskScoreClassificationValidator(RiskScoreClassification riskScoreClassification) {
     this.riskScoreClassification = riskScoreClassification;
@@ -48,6 +46,7 @@ public class RiskScoreClassificationValidator {
    *
    * @return The ValidationResult instance, containing information about possible errors.
    */
+  @Override
   public ValidationResult validate() {
     errors = new ValidationResult();
 
