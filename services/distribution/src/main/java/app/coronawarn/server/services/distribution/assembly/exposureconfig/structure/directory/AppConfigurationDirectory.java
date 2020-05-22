@@ -21,7 +21,7 @@ package app.coronawarn.server.services.distribution.assembly.exposureconfig.stru
 
 import app.coronawarn.server.common.protocols.internal.RiskScoreParameters;
 import app.coronawarn.server.services.distribution.assembly.component.CryptoProvider;
-import app.coronawarn.server.services.distribution.assembly.exposureconfig.structure.directory.decorator.ExposureConfigSigningDecorator;
+import app.coronawarn.server.services.distribution.assembly.exposureconfig.structure.directory.decorator.AppConfigurationSigningDecorator;
 import app.coronawarn.server.services.distribution.assembly.structure.archive.ArchiveOnDisk;
 import app.coronawarn.server.services.distribution.assembly.structure.directory.DirectoryOnDisk;
 import app.coronawarn.server.services.distribution.assembly.structure.directory.IndexDirectoryOnDisk;
@@ -56,7 +56,7 @@ public class AppConfigurationDirectory extends DirectoryOnDisk {
     IndexDirectoryOnDisk<String> country =
         new IndexDirectoryOnDisk<>(COUNTRY_DIRECTORY, __ -> Set.of(COUNTRY), Object::toString);
     country.addWritableToAll(__ ->
-        new ExposureConfigSigningDecorator(archive, cryptoProvider));
+        new AppConfigurationSigningDecorator(archive, cryptoProvider));
 
     this.addWritable(new IndexingDecoratorOnDisk<>(country));
   }
