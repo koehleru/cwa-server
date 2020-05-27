@@ -1,7 +1,6 @@
 package app.coronawarn.server.services.submission.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,6 +13,7 @@ public class SubmissionServiceConfig {
   private Double fakeDelayMovingAverageSamples;
   private Integer retentionDays;
   private Payload payload;
+  private Verification verification;
 
   public Double getInitialFakeDelayMilliseconds() {
     return initialFakeDelayMilliseconds;
@@ -43,8 +43,7 @@ public class SubmissionServiceConfig {
     return payload.getMaxNumberOfKeys();
   }
 
-  public void setPayload(
-      Payload payload) {
+  public void setPayload(Payload payload) {
     this.payload = payload;
   }
 
@@ -58,6 +57,41 @@ public class SubmissionServiceConfig {
 
     public void setMaxNumberOfKeys(Integer maxNumberOfKeys) {
       this.maxNumberOfKeys = maxNumberOfKeys;
+    }
+  }
+
+  public String getVerificationBaseUrl() {
+    return verification.getBaseUrl();
+  }
+
+  public void setVerification(Verification verification) {
+    this.verification = verification;
+  }
+
+  public String getVerificationPath() {
+    return verification.getPath();
+  }
+
+  private static class Verification {
+
+    private String baseUrl;
+
+    private String path;
+
+    public String getBaseUrl() {
+      return baseUrl;
+    }
+
+    public String getPath() {
+      return path;
+    }
+
+    public void setBaseUrl(String baseUrl) {
+      this.baseUrl = baseUrl;
+    }
+
+    public void setPath(String path) {
+      this.path = path;
     }
   }
 
